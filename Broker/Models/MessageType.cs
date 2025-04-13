@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Broker.Models
 {
-    internal class MessageType
+    // Message types for different operations
+    public enum MessageType
     {
+        OrderRequest,
+        OrderVerification,
+        OrderConfirmation,
+        OrderRejection,
+        RoomReservationRequest,
+        RoomReservationConfirmation,
+        HousekeepingRequest,
+        HousekeepingConfirmation
     }
 }
