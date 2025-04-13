@@ -16,24 +16,63 @@ namespace HotelServices.Infrastructure.Messaging
         private readonly IChannel _channel;
         private bool _disposed = false;
 
+        //public RabbitMQClient(string hostName)
+        //{
+        //    try
+        //    {
+        //        _factory = new ConnectionFactory() { HostName = hostName };
+        //        _connection = await _factory.CreateConnectionAsync();
+        //        _channel = await _connection.CreateChannelAsync();
+
+        //        // Declare exchange
+        //        _channel.ExchangeDeclareAsync(exchange: "hotel.direct", type: ExchangeType.Direct);
+
+        //        // Declare queues
+        //        _channel.QueueDeclareAsync(queue: "registry.queue", durable: true, exclusive: false, autoDelete: false);
+        //        _channel.QueueDeclareAsync(queue: "kitchen.queue", durable: true, exclusive: false, autoDelete: false);
+
+        //        // Bind queues to exchange
+        //        _channel.QueueBindAsync(queue: "registry.queue", exchange: "hotel.direct", routingKey: "registry");
+        //        _channel.QueueBindAsync(queue: "kitchen.queue", exchange: "hotel.direct", routingKey: "kitchen");
+
+        //        Console.WriteLine("RabbitMQ initialized successfully.");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"RabbitMQ initialization failed: {ex.Message}");
+        //        throw;
+        //    }
+        //}
+
         public RabbitMQClient(string hostName)
+        {
+            _factory = new ConnectionFactory() { HostName = hostName };
+            // Initialize the connection and channel synchronously
+            InitializeAsync(hostName).GetAwaiter().GetResult();
+        }
+
+        private Task InitializeAsync(string hostName)
+        {
+            return InitializeAsync(hostName, _connection, _channel);
+        }
+
+        private async Task InitializeAsync(string hostName, IConnection _connection, IChannel _channel)
         {
             try
             {
-                _factory = new ConnectionFactory() { HostName = hostName };
-                _connection = _factory.CreateConnectionAsync();
-                _channel = _connection.CreateChannelAsync();
+                _connection = await _factory.CreateConnectionAsync();
+                _channel = await _connection.CreateChannelAsync();
 
                 // Declare exchange
-                _channel.ExchangeDeclareAsync(exchange: "hotel.direct", type: ExchangeType.Direct);
+                await _channel.ExchangeDeclareAsync(exchange: "hotel.direct", type: ExchangeType.Direct);
 
                 // Declare queues
-                _channel.QueueDeclareAsync(queue: "registry.queue", durable: true, exclusive: false, autoDelete: false);
-                _channel.QueueDeclareAsync(queue: "kitchen.queue", durable: true, exclusive: false, autoDelete: false);
+                await _channel.QueueDeclareAsync(queue: "registry.queue", durable: true, exclusive: false, autoDelete: false);
+                await _channel.QueueDeclareAsync(queue: "kitchen.queue", durable: true, exclusive: false, autoDelete: false);
 
                 // Bind queues to exchange
-                _channel.QueueBindAsync(queue: "registry.queue", exchange: "hotel.direct", routingKey: "registry");
-                _channel.QueueBindAsync(queue: "kitchen.queue", exchange: "hotel.direct", routingKey: "kitchen");
+                await _channel.QueueBindAsync(queue: "registry.queue", exchange: "hotel.direct", routingKey: "registry");
+                await _channel.QueueBindAsync(queue: "kitchen.queue", exchange: "hotel.direct", routingKey: "kitchen");
 
                 Console.WriteLine("RabbitMQ initialized successfully.");
             }
