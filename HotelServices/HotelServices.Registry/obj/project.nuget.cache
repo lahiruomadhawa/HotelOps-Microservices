@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "w5ZCzwkDZoVYZDhIcSVvZMIaMAt02unlRoymeZQZaUd4sN/ohO0hNLnfQcH7+e0uYXSS1Ivp6+Pi3B2ftAgoXQ==",
+  "success": true,
+  "projectFilePath": "D:\\Coding\\RND\\RabbitMQ\\gitdump\\HotelOps-Microservices\\HotelServices\\HotelServices.Registry\\HotelServices.Registry.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hiruj\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.28\\microsoft.windowsdesktop.app.ref.6.0.28.nupkg.sha512",
+    "C:\\Users\\hiruj\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.28\\microsoft.netcore.app.ref.6.0.28.nupkg.sha512",
+    "C:\\Users\\hiruj\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.28\\microsoft.aspnetcore.app.ref.6.0.28.nupkg.sha512",
+    "C:\\Users\\hiruj\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.28\\microsoft.netcore.app.host.win-x64.6.0.28.nupkg.sha512"
+  ],
+  "logs": []
+}
