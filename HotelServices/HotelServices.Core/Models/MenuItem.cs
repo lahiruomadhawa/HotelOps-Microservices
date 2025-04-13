@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace HotelServices.Core.Models
 {
-    internal class MenuItem
+    public class MenuItem
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public string Category { get; set; }
+        public bool Available { get; set; }
     }
 }
