@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace HotelServices.Infrastructure.Configuration
 {
-    internal class ConnectionStrings
+    public class ConnectionStrings
     {
+        public string PostgreSQL { get; set; }
+        public string Redis { get; set; }
+        public string RabbitMQ { get; set; }
     }
 }
